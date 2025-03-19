@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="@dimen/big_dimen"
+    app:cardBackgroundColor="@color/deep_orange_200">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/big_dimen">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_fullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Курдюков Данила Денисович"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Возраст: "
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_hor1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22"
+            app:layout_constraintLeft_toRightOf="@id/guideline_ver1"
+            app:layout_constraintTop_toBottomOf="@id/guideline_hor1" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Рост: "
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_hor2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="170"
+            app:layout_constraintLeft_toRightOf="@id/guideline_ver1"
+            app:layout_constraintTop_toBottomOf="@id/guideline_hor2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вес: "
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_hor3" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_view_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="70"
+            app:layout_constraintLeft_toRightOf="@id/guideline_ver1"
+            app:layout_constraintTop_toBottomOf="@id/guideline_hor3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hor1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="25dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hor2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="50dp" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_ver1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="60dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_hor3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="75dp" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
