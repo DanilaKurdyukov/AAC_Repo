@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
 import com.example.aac_app.data.adapter.PersonAdapter
 import com.example.aac_app.data.model.Person
+import com.google.android.material.button.MaterialButton
 
 
 class PersonFragment : Fragment() {
@@ -16,6 +17,8 @@ class PersonFragment : Fragment() {
     private lateinit var recyclerViewPerson: RecyclerView
     private var persons = arrayListOf<Person>()
     private lateinit var personAdapter: PersonAdapter
+    private lateinit var addPersonButton: MaterialButton
+    private lateinit var editPersonButton: MaterialButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +31,18 @@ class PersonFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         recyclerViewPerson = view.findViewById(R.id.recycler_view_person)
+        addPersonButton = view.findViewById(R.id.button_addPerson)
+        editPersonButton = view.findViewById(R.id.button_editPerson)
+    }
+
+    override fun onResume() {
+        super.onResume()
         getData()
         personAdapter = PersonAdapter(requireContext(), persons)
         recyclerViewPerson.adapter = personAdapter
+        addPersonButton.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_frame, AddEditPersonFragment::class.java, null)?.addToBackStack(null)?.commit()
+        }
     }
 
     private fun getData() =
