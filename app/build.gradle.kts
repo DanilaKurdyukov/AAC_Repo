@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
+    // Kotlin serialization plugin for type safe routes and navigation arguments
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -36,6 +39,12 @@ android {
 }
 
 dependencies {
+
+
+
+    //navigation
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
