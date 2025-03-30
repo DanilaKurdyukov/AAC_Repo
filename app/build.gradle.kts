@@ -1,9 +1,13 @@
+import com.google.devtools.ksp.gradle.model.Ksp
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
 
     // Kotlin serialization plugin for type safe routes and navigation arguments
     alias(libs.plugins.kotlin.serialization)
+    //KSP for room
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -40,8 +44,9 @@ android {
 
 dependencies {
 
-
-
+    //room
+    implementation(libs.room.android)
+    ksp(libs.room.compiler)
     //navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
