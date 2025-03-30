@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/personFragment">
+
+    <fragment
+        android:id="@+id/personFragment"
+        android:name="com.example.aac_app.presentation.ui.fragment.PersonFragment"
+        android:label="Person"
+        tools:layout="@layout/fragment_person">
+        <action
+            android:id="@+id/action_personFragment_to_addEditPersonFragment"
+            app:destination="@id/addEditPersonFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditPersonFragment"
+        android:name="com.example.aac_app.presentation.ui.fragment.AddEditPersonFragment"
+        android:label="Person"
+        tools:layout="@layout/fragment_add_edit_person" />
+</navigation>

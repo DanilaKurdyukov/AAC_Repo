@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
 import com.example.aac_app.data.adapter.PersonAdapter
@@ -41,7 +42,8 @@ class PersonFragment : Fragment() {
         personAdapter = PersonAdapter(requireContext(), persons)
         recyclerViewPerson.adapter = personAdapter
         addPersonButton.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_frame, AddEditPersonFragment::class.java, null)?.addToBackStack(null)?.commit()
+           val navController = findNavController()
+            navController.navigate(resId = R.id.addEditPersonFragment)
         }
     }
 
