@@ -46,6 +46,7 @@ dependencies {
 
     //room
     implementation(libs.room.android)
+    implementation(libs.room.ktx)
     ksp(libs.room.compiler)
     //navigation
     implementation(libs.androidx.navigation.fragment)

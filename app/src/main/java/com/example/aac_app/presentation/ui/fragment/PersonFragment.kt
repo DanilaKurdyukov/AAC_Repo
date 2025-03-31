@@ -50,6 +50,7 @@ class PersonFragment : Fragment() {
     private fun getData() =
         persons.add(
             Person(
+                id = 1,
                 firstName = "Курдюков",
                 middleName = "Данила",
                 lastName = "Денисович",
