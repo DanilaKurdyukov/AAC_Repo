@@ -3,15 +3,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!--for buttons-->
+    <!--buttons-->
     <color name="green_200">#A5D6A7</color>
 
     <color name="orange_100">#EAEAEA</color>
-    <!--for the main text-->
+    <!--the main text-->
     <color name="grey_900">#212121</color>
-    <!--or text_input_layout box and hint when pressed-->
+    <!--text_input_layout box and hint when pressed-->
     <color name="grey_700">#616161</color>
-    <!--or text_input_layout box and hint when not pressed-->
+    <!--text_input_layout box and hint when not pressed-->
     <color name="grey_500">#9E9E9E</color>
 
 

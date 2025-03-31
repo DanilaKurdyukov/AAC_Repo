@@ -58,6 +58,11 @@ class PersonFragment : Fragment() {
     private suspend fun getData() {
         persons = personDAO.get() as ArrayList<Person>
         personAdapter = PersonAdapter(context = requireContext(), persons = persons)
+        personAdapter.setOnItemClickListener(object: PersonAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+
+            }
+        })
         recyclerViewPerson.adapter = personAdapter
     }
 
