@@ -5,12 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
+import com.example.aac_app.data.App
 import com.example.aac_app.data.adapter.PersonAdapter
 import com.example.aac_app.data.model.Person
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.launch
 
 
 class PersonFragment : Fragment() {
@@ -20,6 +23,9 @@ class PersonFragment : Fragment() {
     private lateinit var personAdapter: PersonAdapter
     private lateinit var addPersonButton: MaterialButton
     private lateinit var editPersonButton: MaterialButton
+
+    private val personDAO by lazy { App.database.personDao() }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,27 +44,21 @@ class PersonFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        getData()
-        personAdapter = PersonAdapter(requireContext(), persons)
-        recyclerViewPerson.adapter = personAdapter
+        lifecycleScope.launch {
+            getData()
+        }
         addPersonButton.setOnClickListener {
            val navController = findNavController()
             navController.navigate(resId = R.id.addEditPersonFragment)
         }
     }
 
-    private fun getData() =
-        persons.add(
-            Person(
-                id = 1,
-                firstName = "Курдюков",
-                middleName = "Данила",
-                lastName = "Денисович",
-                age = 22,
-                phoneNumber = "89912455826",
-                height = 170,
-                weight = 70
-            )
-        )
+
+
+    private suspend fun getData() {
+        persons = personDAO.get() as ArrayList<Person>
+        personAdapter = PersonAdapter(context = requireContext(), persons = persons)
+        recyclerViewPerson.adapter = personAdapter
+    }
 
 }
