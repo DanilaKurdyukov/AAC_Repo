@@ -18,8 +18,7 @@
             android:id="@+id/edit_text_firstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:text="Курдюков"/>
+            style="@style/EditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -34,8 +33,7 @@
             android:id="@+id/edit_text_middleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:text="Данила"/>
+            style="@style/EditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -50,8 +48,7 @@
             android:id="@+id/edit_text_lastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:text="Денисович"/>
+            style="@style/EditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -66,8 +63,7 @@
             android:id="@+id/edit_text_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:text="22"/>
+            style="@style/EditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -82,8 +78,7 @@
             android:id="@+id/edit_text_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:text="89912455826"/>
+            style="@style/EditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -98,8 +93,7 @@
             android:id="@+id/edit_text_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:text="170"/>
+            style="@style/EditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -114,8 +108,7 @@
             android:id="@+id/edit_text_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:text="70"/>
+            style="@style/EditTextStyle"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton

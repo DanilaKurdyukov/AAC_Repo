@@ -23,7 +23,7 @@ class PersonFragment : Fragment() {
     private lateinit var personAdapter: PersonAdapter
     private lateinit var addPersonButton: MaterialButton
     private lateinit var editPersonButton: MaterialButton
-
+    private var selectedPerson: Person? = null
     private val personDAO by lazy { App.database.personDao() }
 
 
@@ -51,6 +51,9 @@ class PersonFragment : Fragment() {
            val navController = findNavController()
             navController.navigate(resId = R.id.addEditPersonFragment)
         }
+        editPersonButton.setOnClickListener {
+            findNavController().navigate(PersonFragmentDirections.actionPersonFragmentToAddEditPersonFragment(selectedPerson!!.id))
+        }
 
     }
 
@@ -61,7 +64,7 @@ class PersonFragment : Fragment() {
         personAdapter = PersonAdapter(context = requireContext(), persons = persons)
         personAdapter.setOnItemClickListener(object: PersonAdapter.onItemClickListener{
             override fun onItemClick(position: Int) {
-
+                selectedPerson = persons[position]
             }
         })
         recyclerViewPerson.adapter = personAdapter
