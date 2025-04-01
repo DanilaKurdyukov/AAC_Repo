@@ -20,5 +20,10 @@
         android:id="@+id/addEditPersonFragment"
         android:name="com.example.aac_app.presentation.ui.fragment.AddEditPersonFragment"
         android:label="Person"
-        tools:layout="@layout/fragment_add_edit_person" />
+        tools:layout="@layout/fragment_add_edit_person" >
+        <argument
+            android:name="personId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

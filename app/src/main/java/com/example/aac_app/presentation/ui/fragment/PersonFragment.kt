@@ -51,6 +51,7 @@ class PersonFragment : Fragment() {
            val navController = findNavController()
             navController.navigate(resId = R.id.addEditPersonFragment)
         }
+
     }
 
 

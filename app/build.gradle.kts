@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     //KSP for room
     alias(libs.plugins.ksp)
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
