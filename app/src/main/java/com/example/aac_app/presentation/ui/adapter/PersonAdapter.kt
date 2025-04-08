@@ -1,4 +1,4 @@
-package com.example.aac_app.data.adapter
+package com.example.aac_app.presentation.ui.adapter
 
 import android.content.Context
 import android.util.SparseBooleanArray

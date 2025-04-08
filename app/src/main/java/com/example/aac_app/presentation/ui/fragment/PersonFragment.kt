@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
 import com.example.aac_app.data.App
-import com.example.aac_app.data.adapter.PersonAdapter
+import com.example.aac_app.presentation.ui.adapter.PersonAdapter
 import com.example.aac_app.data.model.Person
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch

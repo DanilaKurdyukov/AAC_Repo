@@ -15,6 +15,10 @@ android {
     namespace = "com.example.aac_app"
     compileSdk = 35
 
+    buildFeatures{
+        dataBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.aac_app"
         minSdk = 29
@@ -44,6 +48,10 @@ android {
 }
 
 dependencies {
+
+    //view_model
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
     //room
     implementation(libs.room.android)
