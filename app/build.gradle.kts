@@ -3,6 +3,7 @@ import com.google.devtools.ksp.gradle.model.Ksp
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kapt)
 
     // Kotlin serialization plugin for type safe routes and navigation arguments
     alias(libs.plugins.kotlin.serialization)

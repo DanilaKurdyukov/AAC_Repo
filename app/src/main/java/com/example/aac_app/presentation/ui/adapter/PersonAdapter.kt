@@ -5,64 +5,37 @@ import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
 import com.example.aac_app.data.model.Person
+import com.example.aac_app.databinding.PersonItemBinding
+import com.example.aac_app.presentation.ui.util.ItemClickListener
 import com.google.android.material.textview.MaterialTextView
 
-class PersonAdapter(val context: Context, var persons: ArrayList<Person>): RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
-    private lateinit var mListener: onItemClickListener
+    private lateinit var mListener: ItemClickListener
     private val selectedItems = SparseBooleanArray()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.person_item, parent, false), mListener)
+        return ViewHolder(
+            binding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.person_item,
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = persons.size
 
-
-    interface onItemClickListener {
-        fun onItemClick(position: Int)
-    }
-
-    fun setOnItemClickListener(mListener: onItemClickListener){
-        this.mListener = mListener
-    }
-
-   inner class ViewHolder(itemView: View, listener: onItemClickListener) : RecyclerView.ViewHolder(itemView){
-        val txtFullName = itemView.findViewById<MaterialTextView>(R.id.text_view_fullName)
-        val txtAge = itemView.findViewById<MaterialTextView>(R.id.text_view_age)
-        val txtHeight = itemView.findViewById<MaterialTextView>(R.id.text_view_height)
-        val txtWeight = itemView.findViewById<MaterialTextView>(R.id.text_view_weight)
-
-        init{
-            itemView.setOnClickListener(){
-                if(selectedItems!=null){
-                    if(selectedItems.get(adapterPosition,false)){
-                        selectedItems.delete(adapterPosition)
-                        it.isSelected = false
-                    }
-                    else{
-                        if(selectedItems.size()<1){
-                            selectedItems.put(adapterPosition,true)
-                            it.isSelected = true
-                        }
-                    }
-                }
-                listener.onItemClick(adapterPosition)
-                true
-            }
-        }
-    }
+   inner class ViewHolder(val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val current = persons[position]
-        holder.txtFullName.text = "${current.firstName} ${current.middleName} ${current.lastName}"
-        holder.txtAge.text = "${current.age}"
-        holder.txtHeight.text = "${current.height}"
-        holder.txtWeight.text = "${current.weight}"
+        holder.binding.person = persons[position]
         //for selecting
         holder.itemView.isSelected = selectedItems.get(position, false)
 
