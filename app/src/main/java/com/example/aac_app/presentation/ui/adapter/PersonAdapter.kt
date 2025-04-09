@@ -9,8 +9,11 @@ import com.example.aac_app.R
 import com.example.aac_app.data.model.Person
 import com.example.aac_app.databinding.PersonItemBinding
 import com.example.aac_app.presentation.ui.util.OnItemClickListener
+import androidx.core.util.size
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 
-class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+class PersonAdapter(): ListAdapter<Person, PersonAdapter.ViewHolder>(PersonDiffCallback()) {
 
     private lateinit var mListener: OnItemClickListener
     private val selectedItems = SparseBooleanArray()
@@ -30,15 +33,28 @@ class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapte
         this.mListener = mListener
     }
 
-    override fun getItemCount(): Int = persons.size
-
-   inner class ViewHolder(val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root)
+   inner class ViewHolder(val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root){
+       init {
+           //binding.personItemClickListener = mListener
+       }
+   }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.binding.person = persons[position]
+        holder.binding.person = getItem(position)
         //for selecting
         holder.binding.root.isSelected = selectedItems.get(position, false)
+
+    }
+
+    class PersonDiffCallback: DiffUtil.ItemCallback<Person>(){
+        override fun areItemsTheSame(oldItem: Person, newItem: Person): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Person, newItem: Person): Boolean {
+            return oldItem == newItem
+        }
 
     }
 
@@ -48,7 +64,7 @@ class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapte
         }
 
         val updatedSelectedItems = SparseBooleanArray()
-        for (i in 0 until selectedItems.size()) {
+        for (i in 0 until selectedItems.size) {
             val key = selectedItems.keyAt(i)
             val value = selectedItems.valueAt(i)
             if (key > deletedPosition) {
@@ -58,7 +74,7 @@ class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapte
             }
         }
         selectedItems.clear()
-        for (i in 0 until updatedSelectedItems.size()) {
+        for (i in 0 until updatedSelectedItems.size) {
             selectedItems.put(updatedSelectedItems.keyAt(i), updatedSelectedItems.valueAt(i))
         }
     }

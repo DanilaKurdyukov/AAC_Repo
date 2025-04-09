@@ -24,11 +24,9 @@ import kotlinx.coroutines.launch
 
 class PersonFragment : Fragment() {
 
-    private lateinit var recyclerViewPerson: RecyclerView
+
     private var persons = arrayListOf<Person>()
     private lateinit var personAdapter: PersonAdapter
-    private lateinit var addPersonButton: MaterialButton
-    private lateinit var editPersonButton: MaterialButton
     private var selectedPerson: Person? = null
     private val personDAO by lazy { App.database.personDao() }
 
@@ -53,10 +51,6 @@ class PersonFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        /*recyclerViewPerson = view.findViewById(R.id.recycler_view_person)
-        addPersonButton = view.findViewById(R.id.button_addPerson)
-        editPersonButton = view.findViewById(R.id.button_editPerson)*/
     }
 
     override fun onResume() {
@@ -76,21 +70,16 @@ class PersonFragment : Fragment() {
 
     private fun getData() {
 
+        personAdapter = PersonAdapter()
+        binding.recyclerViewPerson.adapter = personAdapter
+
+        personVM._persons.observe(this) {
+            it.let {
+                personAdapter.submitList(it)
+            }
+        }
 
         personVM.load()
-        personVM._persons.observe(this, {
-            persons = it
-            personAdapter = PersonAdapter(persons)
-            binding.recyclerViewPerson.adapter = personAdapter
-        })
-       /* persons = personDAO.get() as ArrayList<Person>
-        personAdapter = PersonAdapter(persons = persons)
-        personAdapter.setOnItemClickListener(object: OnItemClickListener{
-            override fun onItemClick(person: Person) {
-
-            }
-        })
-        recyclerViewPerson.adapter = personAdapter*/
     }
 
 }
