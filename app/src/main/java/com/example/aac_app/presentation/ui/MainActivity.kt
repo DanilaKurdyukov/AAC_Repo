@@ -1,15 +1,13 @@
 package com.example.aac_app.presentation.ui
 
 import android.os.Bundle
-import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.aac_app.R
-import com.example.aac_app.data.App
+import com.example.aac_app.app.App
 import com.example.aac_app.data.model.Person
-import com.example.aac_app.presentation.ui.fragment.PersonFragment
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.launch
 

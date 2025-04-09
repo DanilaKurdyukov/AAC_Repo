@@ -1,7 +1,8 @@
-package com.example.aac_app.data
+package com.example.aac_app.app
 
 import android.app.Application
 import androidx.room.Room
+import com.example.aac_app.data.AppDatabase
 
 class App: Application() {
 
