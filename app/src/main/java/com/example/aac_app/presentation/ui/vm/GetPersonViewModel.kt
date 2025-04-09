@@ -8,18 +8,14 @@ import com.example.aac_app.data.dao.PersonDAO
 import com.example.aac_app.data.model.Person
 import kotlinx.coroutines.launch
 
-class GetPersonViewModel(val personDAO: PersonDAO): ViewModel() {
+class GetPersonViewModel(private val personDAO: PersonDAO): ViewModel() {
 
-    private val persons = MutableLiveData<List<Person>>()
-
-    fun getData(): LiveData<List<Person>>{
-        return persons
-    }
+    private val persons = MutableLiveData<ArrayList<Person>>()
+    val _persons: LiveData<ArrayList<Person>> = persons
 
     fun load(){
         viewModelScope.launch {
-            val _persons = personDAO.get()
-            persons.value = _persons
+            persons.value = personDAO.get() as ArrayList<Person>
         }
 
     }

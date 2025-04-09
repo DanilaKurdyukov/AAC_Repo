@@ -1,21 +1,18 @@
 package com.example.aac_app.presentation.ui.adapter
 
-import android.content.Context
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
 import com.example.aac_app.data.model.Person
 import com.example.aac_app.databinding.PersonItemBinding
-import com.example.aac_app.presentation.ui.util.ItemClickListener
-import com.google.android.material.textview.MaterialTextView
+import com.example.aac_app.presentation.ui.util.OnItemClickListener
 
 class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
-    private lateinit var mListener: ItemClickListener
+    private lateinit var mListener: OnItemClickListener
     private val selectedItems = SparseBooleanArray()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -29,6 +26,10 @@ class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapte
         )
     }
 
+    fun setOnItemClickListener(mListener: OnItemClickListener){
+        this.mListener = mListener
+    }
+
     override fun getItemCount(): Int = persons.size
 
    inner class ViewHolder(val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root)
@@ -37,7 +38,7 @@ class PersonAdapter(private var persons: ArrayList<Person>): RecyclerView.Adapte
 
         holder.binding.person = persons[position]
         //for selecting
-        holder.itemView.isSelected = selectedItems.get(position, false)
+        holder.binding.root.isSelected = selectedItems.get(position, false)
 
     }
 

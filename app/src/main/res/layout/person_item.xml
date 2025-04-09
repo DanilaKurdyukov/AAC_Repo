@@ -6,7 +6,7 @@
             type="com.example.aac_app.data.model.Person" />
         <variable
             name="personItemClickListener"
-            type="com.example.aac_app.presentation.ui.util.ItemClickListener"/>
+            type="com.example.aac_app.presentation.ui.util.OnItemClickListener"/>
     </data>
     <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:id="@+id/text_view_fullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{person.firstName + person.middleName + person.lastName}"
+                android:text="@{person.firstName + ' ' + person.middleName + ' ' + person.lastName}"
                 style="@style/TextViewStyle"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -112,8 +112,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_begin="75dp" />
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
