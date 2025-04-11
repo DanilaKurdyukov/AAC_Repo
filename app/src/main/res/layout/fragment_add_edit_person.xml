@@ -1,130 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.ui.fragment.AddEditPersonFragment">
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_firstName"
+<layout>
+    <data>
+        <import type="com.example.aac_app.presentation.ui.util.Converters"/>
+        <variable
+            name="addEditVM"
+            type="com.example.aac_app.presentation.ui.vm.AddEditPersonVM"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextInputLayoutStyle"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="Фамилия"
-        android:layout_margin="@dimen/small_dimen">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_firstName"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".presentation.ui.fragment.AddEditPersonFragment">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_firstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            style="@style/TextInputLayoutStyle"
+            app:layout_constraintTop_toTopOf="parent"
+            android:hint="Фамилия"
+            android:layout_margin="@dimen/small_dimen">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:text="@{addEditVM.currentPerson.firstName}"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_middleName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextInputLayoutStyle"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_firstName"
-        android:hint="Имя"
-        android:layout_margin="@dimen/small_dimen">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_middleName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_middleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            style="@style/TextInputLayoutStyle"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_firstName"
+            android:hint="Имя"
+            android:layout_margin="@dimen/small_dimen">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:text="@={addEditVM.currentPerson.middleName}"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_lastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextInputLayoutStyle"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_middleName"
-        android:hint="Отчество"
-        android:layout_margin="@dimen/small_dimen">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_lastName"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_lastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            style="@style/TextInputLayoutStyle"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_middleName"
+            android:hint="Отчество"
+            android:layout_margin="@dimen/small_dimen">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:text="@={addEditVM.currentPerson.lastName}"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_age"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextInputLayoutStyle"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_lastName"
-        android:hint="Возраст"
-        android:layout_margin="@dimen/small_dimen">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_age"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            style="@style/TextInputLayoutStyle"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_lastName"
+            android:hint="Возраст"
+            android:layout_margin="@dimen/small_dimen">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:text="@={Converters.intToString(addEditVM.currentPerson.age)}"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_phoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextInputLayoutStyle"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_age"
-        android:hint="Телефон"
-        android:layout_margin="@dimen/small_dimen"
-        app:counterMaxLength="11"
-        app:counterEnabled="true">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_phoneNumber"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_phoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            style="@style/TextInputLayoutStyle"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_age"
+            android:hint="Телефон"
+            android:layout_margin="@dimen/small_dimen"
+            app:counterMaxLength="11"
+            app:counterEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:inputType="number"
+                android:text="@={addEditVM.currentPerson.phoneNumber}"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_height"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextInputLayoutStyle"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_phoneNumber"
-        android:hint="Рост"
-        android:layout_margin="@dimen/small_dimen">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_height"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            style="@style/TextInputLayoutStyle"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_phoneNumber"
+            android:hint="Рост"
+            android:layout_margin="@dimen/small_dimen">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:text="@={Converters.intToString(addEditVM.currentPerson.weight)}"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_weight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/TextInputLayoutStyle"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_height"
-        android:hint="Вес"
-        android:layout_margin="@dimen/small_dimen">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_weight"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_input_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
-            android:inputType="number"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            style="@style/TextInputLayoutStyle"
+            app:layout_constraintTop_toBottomOf="@+id/text_input_height"
+            android:hint="Вес"
+            android:layout_margin="@dimen/small_dimen">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/EditTextStyle"
+                android:text="@={Converters.intToString(addEditVM.currentPerson.weight)}"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_savePerson"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/ButtonStyle"
-        app:layout_constraintTop_toBottomOf="@id/text_input_weight"
-        android:layout_margin="@dimen/small_dimen"
-        app:cornerRadius="@dimen/big_dimen"
-        android:text="Сохранить"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_savePerson"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ButtonStyle"
+            app:layout_constraintTop_toBottomOf="@id/text_input_weight"
+            android:layout_margin="@dimen/small_dimen"
+            app:cornerRadius="@dimen/big_dimen"
+            android:text="Сохранить"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

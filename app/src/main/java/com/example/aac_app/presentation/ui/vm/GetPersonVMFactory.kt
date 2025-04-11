@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.aac_app.data.dao.PersonDAO
 
-class PersonViewModelFactory(private val personDAO: PersonDAO): ViewModelProvider.Factory {
+class GetPersonVMFactory(private val personDAO: PersonDAO): ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return GetPersonViewModel(personDAO = personDAO) as T
+        return GetPersonVM(personDAO = personDAO) as T
     }
 
 }
