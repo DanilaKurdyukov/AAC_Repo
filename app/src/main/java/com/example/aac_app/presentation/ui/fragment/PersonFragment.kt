@@ -5,22 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
 import com.example.aac_app.app.App
 import com.example.aac_app.presentation.ui.adapter.PersonAdapter
 import com.example.aac_app.data.model.Person
 import com.example.aac_app.databinding.FragmentPersonBinding
-import com.example.aac_app.presentation.ui.util.OnItemClickListener
 import com.example.aac_app.presentation.ui.vm.GetPersonViewModel
 import com.example.aac_app.presentation.ui.vm.PersonViewModelFactory
-import com.google.android.material.button.MaterialButton
-import kotlinx.coroutines.launch
-
 
 class PersonFragment : Fragment() {
 
@@ -70,7 +64,11 @@ class PersonFragment : Fragment() {
 
     private fun getData() {
 
-        personAdapter = PersonAdapter()
+        personAdapter = PersonAdapter(object: PersonAdapter.OnItemClickListener{
+            override fun onItemClick(person: Person) {
+                
+            }
+        })
         binding.recyclerViewPerson.adapter = personAdapter
 
         personVM._persons.observe(this) {

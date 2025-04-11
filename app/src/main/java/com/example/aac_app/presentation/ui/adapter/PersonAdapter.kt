@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.aac_app.R
 import com.example.aac_app.data.model.Person
 import com.example.aac_app.databinding.PersonItemBinding
-import com.example.aac_app.presentation.ui.util.OnItemClickListener
 import androidx.core.util.size
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
-class PersonAdapter(): ListAdapter<Person, PersonAdapter.ViewHolder>(PersonDiffCallback()) {
+class PersonAdapter(val onItemClickListener: OnItemClickListener): ListAdapter<Person, PersonAdapter.ViewHolder>(PersonDiffCallback()) {
 
     private lateinit var mListener: OnItemClickListener
     private val selectedItems = SparseBooleanArray()
@@ -34,14 +33,30 @@ class PersonAdapter(): ListAdapter<Person, PersonAdapter.ViewHolder>(PersonDiffC
     }
 
    inner class ViewHolder(val binding: PersonItemBinding) : RecyclerView.ViewHolder(binding.root){
-       init {
-           //binding.personItemClickListener = mListener
+       fun bind(item: Person){
+           binding.person = item
+           binding.root.setOnClickListener(){
+               if(selectedItems!=null){
+                   if(selectedItems.get(adapterPosition,false)){
+                       selectedItems.delete(adapterPosition)
+                       it.isSelected = false
+                   }
+                   else{
+                       if(selectedItems.size()<1){
+                           selectedItems.put(adapterPosition,true)
+                           it.isSelected = true
+                       }
+                   }
+               }
+               onItemClickListener.onItemClick(item)
+           }
+           binding.executePendingBindings()
        }
    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.binding.person = getItem(position)
+        holder.bind(getItem(position))
         //for selecting
         holder.binding.root.isSelected = selectedItems.get(position, false)
 
@@ -56,6 +71,10 @@ class PersonAdapter(): ListAdapter<Person, PersonAdapter.ViewHolder>(PersonDiffC
             return oldItem == newItem
         }
 
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(person: Person)
     }
 
     fun updateSelectedItemsAfterDeletion(deletedPosition: Int) {
