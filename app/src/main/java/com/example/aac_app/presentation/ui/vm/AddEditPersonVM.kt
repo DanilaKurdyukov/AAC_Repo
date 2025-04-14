@@ -1,5 +1,6 @@
 package com.example.aac_app.presentation.ui.vm
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,6 +21,12 @@ class AddEditPersonVM(private val personDAO: PersonDAO): ViewModel() {
     fun update() {
         viewModelScope.launch {
             personDAO.update(currentPerson.value!!)
+        }
+    }
+
+    fun add(person: Person) {
+        viewModelScope.launch {
+            personDAO.add(person)
         }
     }
 

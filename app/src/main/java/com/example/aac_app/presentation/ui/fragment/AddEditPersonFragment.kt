@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IntegerRes
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.aac_app.R
@@ -45,6 +47,7 @@ class AddEditPersonFragment : Fragment() {
     private val personDAO by lazy { App.database.personDao() }
 
     private lateinit var binding: FragmentAddEditPersonBinding
+    private var edit = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,41 +57,38 @@ class AddEditPersonFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         getArgs()
+        val onSaveClickListener = View.OnClickListener {
+            save()
+        }
+        binding.onSaveClickListener = onSaveClickListener
     }
 
     private fun getArgs() {
         val args = navArgs<AddEditPersonFragmentArgs>()
         val id = args.value.personId
-        if(id != null){
+        if(id!=-1){
+            edit = true
             addEditVM.getPersonById(id)
         }
     }
 
-    /*private suspend fun add(){
-        val person = Person(
-            id = 0,
-            firstName = txtFirstName.text.toString(),
-            middleName = txtMiddleName.text.toString(),
-            lastName = txtLastName.text.toString(),
-            age = Integer.valueOf(txtAge.text.toString()),
-            phoneNumber = txtPhoneNumber.text.toString(),
-            height = Integer.valueOf(txtHeight.text.toString()),
-            weight = Integer.valueOf(txtWeight.text.toString()),
-        )
-        personDAO.add(person)
-
-    }*/
-
-   /* private suspend fun update(){
-        current?.firstName = txtFirstName.text.toString()
-        current?.middleName = txtMiddleName.text.toString()
-        current?.lastName = txtLastName.text.toString()
-        current?.age = Integer.valueOf(txtAge.text.toString())
-        current?.phoneNumber = txtPhoneNumber.text.toString()
-        current?.height = Integer.valueOf(txtHeight.text.toString())
-        current?.weight = Integer.valueOf(txtWeight.text.toString())
-        personDAO.update(current!!)
-    }*/
-
+    private fun save(){
+        if(!edit){
+            val person = Person(
+                id = 0,
+                firstName = binding.editTextFirstName.text.toString(),
+                lastName = binding.editTextLastName.text.toString(),
+                middleName = binding.editTextMiddleName.text.toString(),
+                age = Integer.valueOf(binding.editTextAge.text.toString()),
+                phoneNumber = binding.editTextPhoneNumber.text.toString(),
+                height = Integer.valueOf(binding.editTextHeight.text.toString()),
+                weight = Integer.valueOf(binding.edtiTextWeight.text.toString())
+            )
+            addEditVM.add(person)
+        } else {
+            addEditVM.update()
+        }
+        findNavController().navigate(R.id.personFragment)
+    }
 
 }
