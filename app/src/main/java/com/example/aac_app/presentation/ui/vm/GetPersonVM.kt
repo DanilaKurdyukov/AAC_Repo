@@ -17,6 +17,12 @@ class GetPersonVM(private val personDAO: PersonDAO): ViewModel() {
         viewModelScope.launch {
             persons.value = personDAO.get() as ArrayList<Person>
         }
+    }
 
+    fun delete(person: Person){
+        viewModelScope.launch {
+            personDAO.delete(person)
+            load()
+        }
     }
 }

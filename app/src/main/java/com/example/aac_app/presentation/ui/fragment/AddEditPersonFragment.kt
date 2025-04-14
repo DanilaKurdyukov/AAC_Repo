@@ -5,11 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IntegerRes
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.aac_app.R
@@ -18,9 +15,6 @@ import com.example.aac_app.data.model.Person
 import com.example.aac_app.databinding.FragmentAddEditPersonBinding
 import com.example.aac_app.presentation.ui.vm.AddEditPersonVM
 import com.example.aac_app.presentation.ui.vm.AddEditPersonVMFactory
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.launch
 
 
 class AddEditPersonFragment : Fragment() {

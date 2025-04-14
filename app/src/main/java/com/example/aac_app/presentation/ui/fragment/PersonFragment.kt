@@ -48,6 +48,14 @@ class PersonFragment : Fragment() {
         binding.buttonEditPerson.setOnClickListener {
             findNavController().navigate(PersonFragmentDirections.actionPersonFragmentToAddEditPersonFragment(selectedPerson!!.id))
         }
+        val onDeleteClickListener = View.OnClickListener {
+            delete()
+        }
+        binding.onDeleteClickListener = onDeleteClickListener
+    }
+
+    fun delete(){
+        personVM.delete(selectedPerson!!)
     }
 
     private fun getData() {
